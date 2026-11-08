@@ -549,6 +549,23 @@ export default function Landing() {
           <div className="absolute inset-x-0 top-28 h-px bg-gradient-to-r from-transparent via-[#53b6ff]/25 to-transparent" />
         </div>
 
+        <section className="tt2-window mb-3" aria-labelledby="preservation-notice-title">
+          <div className="tt2-titlebar">
+            <div className="flex items-center gap-2 uppercase tracking-[0.18em] text-[10px] text-slate-300">
+              <span className="h-2.5 w-2.5 bg-[#f0cd72] shadow-[0_0_8px_rgba(240,205,114,0.6)]" />
+              <h2 id="preservation-notice-title">Notice / Preservation Copy</h2>
+            </div>
+          </div>
+          <p className="bg-[#05070b] px-3 py-3 text-[12px] leading-relaxed text-slate-300 sm:px-4">
+            Hey guys! NarcisussX has stopped playing EVE and has therefore also discontinued
+            development of Triff Tools. I would like to preserve this great project, into which
+            thousands of hours of work have been invested. That is why I have hosted a copy here.
+            There will be updates to reflect API changes, but no further development. This site is
+            intended solely to preserve this great tool. Thank you, NarcisussX, for all your hard
+            work.
+          </p>
+        </section>
+
         <div className="tt2-window">
           <div className="tt2-titlebar">
             <div className="flex items-center gap-2 uppercase tracking-[0.18em] text-[10px] text-slate-300">
@@ -627,6 +644,11 @@ export default function Landing() {
                 <span className="px-2">|</span>
                 Not affiliated with CCP Games. EVE Online and related trademarks
                 are property of CCP hf.
+              </div>
+              <div className="mt-1">
+                fenris.space is not affiliated with Fenris Creations.
+                <span className="px-2">|</span>
+                This website is an open-source community project.
               </div>
               <div className="mt-2 flex flex-wrap items-center justify-center gap-x-3 gap-y-1 uppercase tracking-[0.14em]">
                 <Link to="/privacy" className="text-slate-500 hover:text-[#53b6ff]">
