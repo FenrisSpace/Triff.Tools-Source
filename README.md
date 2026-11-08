@@ -66,12 +66,15 @@ Copy the example environment file and fill in the values that apply to the featu
 cp .env.example .env
 ```
 
-For the full Compose stack, `DATABASE_URL` should point at the Compose Postgres service:
+For the full Compose stack, `DATABASE_URL` should point at the Compose Postgres service, and `POSTGRES_PASSWORD` must match the password in it:
 
 ```env
-DATABASE_URL=postgres://user:pass@postgres:5432/triffnix
+DATABASE_URL=postgres://user:<password>@postgres:5432/triffnix
+POSTGRES_PASSWORD=<password>
 PGSSL=false
 ```
+
+Postgres applies `POSTGRES_PASSWORD` only when the `postgres-data` volume is first created. To change it later, run `ALTER USER "user" WITH PASSWORD '...'` inside the database as well.
 
 The example file includes placeholders/defaults for contact webhooks, price warmup, R2Z2 polling, public base URLs, EVE SSO credentials, and ESI token encryption.
 

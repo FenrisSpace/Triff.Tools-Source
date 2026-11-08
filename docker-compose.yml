@@ -1,5 +1,3 @@
-version: "3.8"
-
 services:
   triffnix-frontend:
     build:
@@ -13,10 +11,12 @@ services:
       - "traefik.http.routers.triff-frontend.rule=Host(`triff.tools`) || Host(`www.triff.tools`) || Host(`dev.triff.tools`)"
       - "traefik.http.routers.triff-frontend.entrypoints=websecure"
       - "traefik.http.routers.triff-frontend.tls=true"
+      - "traefik.http.routers.triff-frontend.tls.certresolver=myresolver"
 
       - "traefik.http.routers.triff-static.rule=(Host(`triff.tools`) || Host(`www.triff.tools`) || Host(`dev.triff.tools`)) && (PathPrefix(`/static/`) || PathPrefix(`/assets/`) || Path(`/favicon.ico`))"
       - "traefik.http.routers.triff-static.entrypoints=websecure"
       - "traefik.http.routers.triff-static.tls=true"
+      - "traefik.http.routers.triff-static.tls.certresolver=myresolver"
       - "traefik.http.routers.triff-static.priority=2000"
       - "traefik.http.routers.triff-static.service=triff-frontend"
       - "traefik.http.services.triff-frontend.loadbalancer.server.port=80"
@@ -46,11 +46,13 @@ services:
       - "traefik.http.routers.triff-backend.rule=(Host(`triff.tools`) || Host(`www.triff.tools`) || Host(`dev.triff.tools`)) && PathPrefix(`/api`)"
       - "traefik.http.routers.triff-backend.entrypoints=websecure"
       - "traefik.http.routers.triff-backend.tls=true"
+      - "traefik.http.routers.triff-backend.tls.certresolver=myresolver"
       - "traefik.http.services.triff-backend.loadbalancer.server.port=3000"
 
       - "traefik.http.routers.triff-embeds.rule=(Host(`triff.tools`) || Host(`www.triff.tools`) || Host(`dev.triff.tools`)) && HeaderRegexp(`User-Agent`, `Discordbot|Twitterbot|Slackbot|LinkedInBot|facebookexternalhit|embedly|WhatsApp|redditbot|TelegramBot`)"
       - "traefik.http.routers.triff-embeds.entrypoints=web,websecure"
       - "traefik.http.routers.triff-embeds.tls=true"
+      - "traefik.http.routers.triff-embeds.tls.certresolver=myresolver"
       - "traefik.http.routers.triff-embeds.priority=1000"
       - "traefik.http.routers.triff-embeds.service=triff-backend"
     networks:
@@ -89,7 +91,7 @@ services:
     environment:
       POSTGRES_DB: triffnix
       POSTGRES_USER: user
-      POSTGRES_PASSWORD: pass
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?POSTGRES_PASSWORD must be set in .env}
     volumes:
       - postgres-data:/var/lib/postgresql/data
     networks:
@@ -144,6 +146,8 @@ services:
       "
     environment:
       - DATABASE_URL=${DATABASE_URL}
+      # Node heap for the SDE import; types.yaml alone needs more than 4 GB to parse.
+      - SDE_IMPORT_MAX_OLD_SPACE_MB=${SDE_IMPORT_MAX_OLD_SPACE_MB:-12288}
     restart: unless-stopped
     networks: [web]
 

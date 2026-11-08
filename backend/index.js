@@ -148,21 +148,29 @@ const OPENAPI_PATH =
   process.env.OPENAPI_PATH ||
   path.join(__dirname, "docs", "TriffTools-OpenAPI.yaml");
 
-const spec = yaml.parse(fs.readFileSync(OPENAPI_PATH, "utf8"));
-
-app.get("/api/openapi.yaml", (req, res) => {
-  res.sendFile(OPENAPI_PATH);
-});
+// The OpenAPI spec is optional: without it the API runs, only the docs routes are disabled.
+let spec = null;
+if (fs.existsSync(OPENAPI_PATH)) {
+  spec = yaml.parse(fs.readFileSync(OPENAPI_PATH, "utf8"));
+} else {
+  console.warn(`[openapi] spec not found at ${OPENAPI_PATH}; /api/docs and /api/redoc disabled`);
+}
 
 const priceCache = require('./lib/priceCache');
 priceCache.start();
 
-app.use("/api/docs", swaggerUi.serve, swaggerUi.setup(spec));
+if (spec) {
+  app.get("/api/openapi.yaml", (req, res) => {
+    res.sendFile(OPENAPI_PATH);
+  });
 
-app.get("/api/redoc", redoc({
-  title: "Triff.Tools API",
-  specUrl: "/api/openapi.yaml",
-}));
+  app.use("/api/docs", swaggerUi.serve, swaggerUi.setup(spec));
+
+  app.get("/api/redoc", redoc({
+    title: "Triff.Tools API",
+    specUrl: "/api/openapi.yaml",
+  }));
+}
 
 app.use((err, req, res, next) => {
   captureException(err, {
