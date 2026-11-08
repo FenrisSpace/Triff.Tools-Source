@@ -71,6 +71,10 @@ type EveUiIconDef = {
   markup: string;
 };
 
+// Sign-in and account creation are switched off for now: hides the header button and
+// the menu entry, and ignores every request to open the sign-in dialog.
+const SITE_LOGIN_ENABLED = false;
+
 const Desktop = lazy(routeLoaders.desktop);
 const GasCalc = lazy(routeLoaders.gasCalc);
 const BlootCalc = lazy(routeLoaders.blootCalc);
@@ -371,6 +375,7 @@ export default function App() {
     }
 
     function handleAuthOpen(event: Event) {
+      if (!SITE_LOGIN_ENABLED) return;
       const detail = (event as CustomEvent<SiteAuthOpenDetail>).detail;
       setAuthModalMode(detail?.mode || "login");
       setAuthError(null);
@@ -544,7 +549,7 @@ export default function App() {
                 to="/"
                 className="uppercase tracking-[0.22em] text-[12px] text-slate-200 hover:text-white transition-colors"
               >
-                Triff.Tools
+                Triff Tools Continued
               </Link>
 
               <div className="relative">
@@ -623,7 +628,7 @@ export default function App() {
                     <span className="hidden md:inline">Logout</span>
                   </button>
                 </div>
-              ) : (
+              ) : SITE_LOGIN_ENABLED ? (
                 <button
                   type="button"
                   className="flex h-7 items-center gap-1 border border-[#3a3c40] bg-[#05070b] px-2 text-[10px] uppercase tracking-[0.14em] text-slate-300 hover:bg-[#090c13] hover:text-slate-100 focus:outline-none focus-visible:ring-1 focus-visible:ring-[#53b6ff]"
@@ -636,7 +641,7 @@ export default function App() {
                   <User size={13} />
                   <span className="hidden sm:inline">{authChecked ? "Sign in" : "Checking"}</span>
                 </button>
-              )}
+              ) : null}
               <button
                 className={`flex h-7 w-7 items-center justify-center border border-[#3a3c40] bg-[#05070b] text-slate-200 hover:bg-[#090c13] hover:text-white focus:outline-none focus-visible:ring-1 focus-visible:ring-[#53b6ff] transition ${
                   isOpen ? "opacity-0 pointer-events-none" : ""
@@ -681,7 +686,7 @@ export default function App() {
           </div>
 
           <div className="flex-1 overflow-y-auto px-2 py-3 bg-[#05070b] space-y-3">
-            <Section title="Account" items={accountNav} />
+            {(SITE_LOGIN_ENABLED || authUser) && <Section title="Account" items={accountNav} />}
             <Section title="Calculators" items={CALCULATORS} />
             <Section title="Reference" items={REFERENCE} />
             <Section title="Meta" items={META} />
