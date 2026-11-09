@@ -1,13 +1,13 @@
 export const ANALYTICS_CONSENT_KEY = "tt-analytics-consent";
 
-const GA_MEASUREMENT_ID = "G-80L9Q6MZQD";
+const GTM_CONTAINER_ID = "GTM-T6DTCKW9";
 const GA_SCRIPT_ID = "triff-tools-google-analytics";
 
 export type AnalyticsConsent = "granted" | "denied";
 
 declare global {
   interface Window {
-    dataLayer?: unknown[][];
+    dataLayer?: unknown[];
     gtag?: (...args: unknown[]) => void;
   }
 }
@@ -38,14 +38,14 @@ export function loadGoogleAnalytics(): void {
     };
 
   if (!document.getElementById(GA_SCRIPT_ID)) {
+    window.dataLayer?.push({ "gtm.start": new Date().getTime(), event: "gtm.js" });
+    window.gtag("js", new Date());
+
     const script = document.createElement("script");
     script.id = GA_SCRIPT_ID;
     script.async = true;
-    script.src = `https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`;
+    script.src = `https://www.googletagmanager.com/gtm.js?id=${GTM_CONTAINER_ID}`;
     document.head.appendChild(script);
-
-    window.gtag("js", new Date());
-    window.gtag("config", GA_MEASUREMENT_ID, { send_page_view: false });
   }
 }
 
