@@ -93,7 +93,6 @@ const AppraisalView = lazy(routeLoaders.appraisalView);
 const Account = lazy(routeLoaders.account);
 const Statuses = lazy(routeLoaders.statuses);
 const Industry = lazy(routeLoaders.industry);
-const ContactPage = lazy(routeLoaders.contact);
 const PrivacyPolicy = lazy(routeLoaders.privacy);
 const TermsOfUse = lazy(routeLoaders.terms);
 const CompressedOrePlanner = lazy(routeLoaders.compressedOrePlanner);
@@ -216,10 +215,8 @@ const META: Item[] = [
   { to: "/fitting", label: "Fitting Tool", Icon: EVE_ICONS.fitting },
   { to: "/timestamp", label: "Time Converter", Icon: EVE_ICONS.calendar },
   { to: "/desktop", label: "Desktop", Icon: EVE_ICONS.other },
-  { to: "/contact", label: "Contact Me", Icon: EVE_ICONS.chatChannels },
   { to: "/changelog", label: "Changelog", Icon: EVE_ICONS.contractAuction },
   { to: "/statuses", label: "Status", Icon: EVE_ICONS.folderCargo },
-  { to: "/api/docs", label: "API Docs", Icon: EVE_ICONS.augmentations },
   { to: "/items", label: "Item Browser", Icon: EVE_ICONS.journal },
 ];
 
@@ -767,7 +764,6 @@ export default function App() {
           <Route path="/account" element={<Account authUser={authUser} authChecked={authChecked} />} />
           <Route path="/statuses" element={<Statuses />} />
           <Route path="/industry" element={<Industry />} />
-          <Route path="/contact" element={<ContactPage />} />
           <Route path="/privacy" element={<PrivacyPolicy />} />
           <Route path="/terms" element={<TermsOfUse />} />
           <Route path="/compressed" element={<CompressedOrePlanner />} />

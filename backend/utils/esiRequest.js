@@ -6,7 +6,7 @@
 const axios = require("axios");
 
 const ESI_HEADERS = {
-  "User-Agent": "Triff.Tools/2.1.0 (contact: cooperbroderick25@gmail.com)",
+  "User-Agent": "Triff.Tools/2.1.0 (contact: admin@fenris.space)",
 };
 
 async function fetchESI(url) {

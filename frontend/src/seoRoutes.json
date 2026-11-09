@@ -194,12 +194,6 @@
     "image": "https://www.triff.tools/static/og/changelog-1200x630.png"
   },
   {
-    "path": "/contact",
-    "title": "Contact Triff.Tools",
-    "description": "Send feedback, bug reports, EVE tool requests, data issues, and suggestions for the Triff.Tools browser tool suite.",
-    "image": "https://www.triff.tools/static/og/about-1200x630.png"
-  },
-  {
     "path": "/api/docs",
     "title": "Triff.Tools API Documentation",
     "description": "Browse Triff.Tools OpenAPI documentation for EVE market, wormhole, industry, appraisal, gas, ore, and item data endpoints.",

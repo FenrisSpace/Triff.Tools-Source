@@ -299,10 +299,10 @@ const sections: TermsSection[] = [
       <>
         <p>
           For terms questions, abuse reports, public-link takedown requests, account
-          issues, privacy questions, or ESI concerns, use the{" "}
-          <Link to="/contact" className="text-[#53b6ff] underline hover:text-[#7fc5ff]">
-            contact page
-          </Link>
+          issues, privacy questions, or ESI concerns, email{" "}
+          <a href="mailto:admin@fenris.space" className="text-[#53b6ff] underline hover:text-[#7fc5ff]">
+            admin@fenris.space
+          </a>
           .
         </p>
       </>
@@ -372,9 +372,6 @@ export default function TermsOfUse() {
             <div className="flex items-center gap-3">
               <Link to="/privacy" className="text-[#53b6ff] underline hover:text-[#7fc5ff]">
                 Privacy
-              </Link>
-              <Link to="/contact" className="text-[#53b6ff] underline hover:text-[#7fc5ff]">
-                Contact
               </Link>
             </div>
           </div>

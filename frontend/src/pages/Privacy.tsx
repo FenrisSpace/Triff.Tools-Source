@@ -329,10 +329,10 @@ const sections: PolicySection[] = [
           page will be updated when material changes are made.
         </p>
         <p>
-          For privacy questions, account deletion issues, or ESI concerns, use the{" "}
-          <Link to="/contact" className="text-[#53b6ff] underline hover:text-[#7fc5ff]">
-            contact page
-          </Link>
+          For privacy questions, account deletion issues, or ESI concerns, email{" "}
+          <a href="mailto:admin@fenris.space" className="text-[#53b6ff] underline hover:text-[#7fc5ff]">
+            admin@fenris.space
+          </a>
           .
         </p>
       </>
@@ -422,9 +422,6 @@ export default function PrivacyPolicy() {
             <div className="flex items-center gap-3">
               <Link to="/terms" className="text-[#53b6ff] underline hover:text-[#7fc5ff]">
                 Terms
-              </Link>
-              <Link to="/contact" className="text-[#53b6ff] underline hover:text-[#7fc5ff]">
-                Contact
               </Link>
             </div>
           </div>

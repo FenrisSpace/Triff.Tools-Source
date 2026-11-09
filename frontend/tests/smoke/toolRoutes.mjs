@@ -29,7 +29,6 @@ export const SPA_TOOL_ROUTES = [
   { path: "/account", label: "Account Workspace" },
   { path: "/skillnix", label: "Skillnix Character Monitor" },
   { path: "/triff-local", label: "TriffLocal Intel" },
-  { path: "/contact", label: "Contact Me" },
   { path: "/privacy", label: "Privacy Policy" },
   { path: "/terms", label: "Terms of Use" },
   { path: "/changelog", label: "Changelog" },

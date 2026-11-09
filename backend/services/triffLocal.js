@@ -3,7 +3,7 @@ const pool = require("../db/pool");
 
 const ESI_BASE = process.env.ESI_BASE_URL || "https://esi.evetech.net/latest";
 const ZKILL_BASE = process.env.ZKILL_BASE_URL || "https://zkillboard.com/api";
-const USER_AGENT = process.env.TRIFF_LOCAL_USER_AGENT || "Triff.Tools/2.1.0 (contact: cooperbroderick25@gmail.com)";
+const USER_AGENT = process.env.TRIFF_LOCAL_USER_AGENT || "Triff.Tools/2.1.0 (contact: admin@fenris.space)";
 const ONE_MIB = 1024 * 1024;
 const HARD_MAX_INPUT_LENGTH = 2 * ONE_MIB;
 const HARD_MAX_NAMES = 750;

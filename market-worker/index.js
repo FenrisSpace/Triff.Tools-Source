@@ -253,7 +253,7 @@ async function fetchPage(region_id, page, attempt = 1) {
   const url = `https://esi.evetech.net/latest/markets/${region_id}/orders/?order_type=all&page=${page}`;
   const headers = {
     "Accept": "application/json",
-    "User-Agent": "TriffnixMarketWorker/1.0 (contact: cooperbroderick25@gmail.com)"
+    "User-Agent": "TriffnixMarketWorker/1.0 (contact: admin@fenris.space)"
   };
   if (state.etag) headers["If-None-Match"] = state.etag;
 

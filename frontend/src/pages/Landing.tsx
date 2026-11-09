@@ -373,15 +373,6 @@ const TOOLS: Tool[] = [
     Icon: EVE_ICONS.other,
   },
   {
-    name: "Contact Me",
-    path: "/contact",
-    description: "Bug reports, feedback, and contact info.",
-    category: "Meta",
-    service: "Meta & Utilities",
-    tags: ["contact", "feedback", "bugs", "meta"],
-    Icon: EVE_ICONS.chatChannels,
-  },
-  {
     name: "Changelog",
     path: "/changelog",
     description: "Recent changes and release notes.",
@@ -398,15 +389,6 @@ const TOOLS: Tool[] = [
     service: "Meta & Utilities",
     tags: ["status", "service", "data", "freshness"],
     Icon: EVE_ICONS.folderCargo,
-  },
-  {
-    name: "API Docs",
-    path: "/api/docs",
-    description: "OpenAPI documentation for triff.tools endpoints.",
-    category: "Meta",
-    service: "Meta & Utilities",
-    tags: ["api", "docs", "openapi", "endpoints"],
-    Icon: EVE_ICONS.augmentations,
   },
   {
     name: "Item Browser",

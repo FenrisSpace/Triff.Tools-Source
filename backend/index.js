@@ -101,7 +101,6 @@ app.use("/api", require("./routes/items"));
 const marketFallback = require("./routes/marketFallback");
 app.use("/api", marketFallback);
 app.use("/api/statuses", require("./routes/statuses"));
-app.use("/api/contact", require("./routes/contact"));
 app.use("/api/auth", require("./routes/auth"));
 app.use("/api/account", require("./routes/account"));
 app.use("/api/secret", require("./routes/secret"));
