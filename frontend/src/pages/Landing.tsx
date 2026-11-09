@@ -852,7 +852,7 @@ function ToolIndexColumn({
   group: { category: Category; tools: Tool[] };
 }) {
   return (
-    <div className="tt2-panel overflow-hidden">
+    <div className="tt2-panel self-start overflow-hidden">
       <div className="tt2-panel-head">
         <h3 className="tt2-panel-title">
           {group.category}
