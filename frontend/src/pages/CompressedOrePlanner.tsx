@@ -673,7 +673,7 @@ export default function CompressedOrePlanner() {
             station_id: String(stationId),
             type_ids: typeIds.join(","),
         });
-        fetch(`https://triff.tools/api/prices/station?${qs.toString()}`, {
+        fetch(`/api/prices/station?${qs.toString()}`, {
             headers: { Accept: "application/json" },
         })
             .then((r) => r.json())
@@ -696,7 +696,7 @@ export default function CompressedOrePlanner() {
             station_id: String(stationId),
             type_ids: ids.join(","),
         });
-        fetch(`https://triff.tools/api/prices/station?${qs.toString()}`, {
+        fetch(`/api/prices/station?${qs.toString()}`, {
             headers: { Accept: "application/json" },
         })
             .then((r) => r.json())

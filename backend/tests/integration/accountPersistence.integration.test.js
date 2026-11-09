@@ -1,5 +1,8 @@
 const test = require("node:test");
 const assert = require("node:assert/strict");
+
+// These tests exercise site accounts, which are off by default.
+process.env.SITE_LOGIN_ENABLED = "true";
 const { startDisposablePostgres } = require("./disposablePostgres");
 
 async function maybeStartPostgres(t) {

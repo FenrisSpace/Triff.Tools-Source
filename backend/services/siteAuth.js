@@ -8,6 +8,16 @@ const SESSION_MS = 30 * 24 * 60 * 60 * 1000;
 const AUTH_WINDOW_MS = 10 * 60 * 1000;
 const AUTH_MAX_ATTEMPTS = 20;
 
+// Site accounts are off unless SITE_LOGIN_ENABLED=true: register and login are refused,
+// and existing session cookies are not honoured.
+function siteLoginEnabled() {
+  return String(process.env.SITE_LOGIN_ENABLED || "").trim().toLowerCase() === "true";
+}
+
+function loginDisabledResponse(res) {
+  return res.status(403).json({ ok: false, error: "Sign-in is disabled on this instance." });
+}
+
 let schemaReady = false;
 let schemaPromise = null;
 const authAttempts = new Map();
@@ -192,6 +202,7 @@ async function createSession(userId, req, res) {
 }
 
 async function getSessionUser(req) {
+  if (!siteLoginEnabled()) return null;
   const token = sessionTokenFromRequest(req);
   if (!token) return null;
   await ensureAuthSchema();
@@ -234,6 +245,7 @@ async function requireAuth(req, res, next) {
 }
 
 async function register(req, res) {
+  if (!siteLoginEnabled()) return loginDisabledResponse(res);
   try {
     await ensureAuthSchema();
     const validation = validateRegisterCredentials(req.body);
@@ -260,6 +272,7 @@ async function register(req, res) {
 }
 
 async function login(req, res) {
+  if (!siteLoginEnabled()) return loginDisabledResponse(res);
   try {
     await ensureAuthSchema();
     const validation = validateLoginCredentials(req.body);
